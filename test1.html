@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pico W Control Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #1e1e2f;
+      --fg: #f0f0f0;
+      --panel: #2c2f4a;
+      --input: #3b3f63;
+      --accent: #00bfff;
+      --success: #32cd32;
+      --error: #ff4040;
+    }
+
+    [data-theme="light"] {
+      --bg: #f4f4f4;
+      --fg: #1e1e2f;
+      --panel: #ffffff;
+      --input: #e4e4e4;
+      --accent: #0077cc;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      margin: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      background-color: var(--panel);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="time"] {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--input);
+      color: var(--fg);
+      font-size: 1rem;
+    }
+
+    .option-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .option-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--accent);
+      color: var(--bg);
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .live-time {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .theme-toggle {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .theme-toggle button {
+      width: auto;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .response-box {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+
+    .response-box.success {
+      background-color: rgba(50, 205, 50, 0.2);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    .response-box.error {
+      background-color: rgba(255, 64, 64, 0.2);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pico W Control Panel</h1>
+
+  <div class="container">
+    <label for="ipInput">Pico IP Address:</label>
+    <input type="text" id="ipInput" value="10.0.0.197">
+
+    <div class="row">
+      <button onclick="pingPico()">Ping</button>
+      <button onclick="sendData()">Send to Pico</button>
+    </div>
+
+    <div class="option-group">
+      <input type="checkbox" id="timeCheckbox" onchange="toggleExclusive(this, 'sensorCheckbox')">
+      <label for="timeCheckbox">Send Time</label>
+    </div>
+    <input type="time" id="timeInput" disabled>
+
+    <div class="option-group">
+      <input type="checkbox" id="sensorCheckbox" onchange="toggleExclusive(this, 'timeCheckbox')">
+      <label for="sensorCheckbox">Use Sensor</label>
+    </div>
+
+    <div class="live-time" id="liveTime">Current Time: --:--</div>
+
+    <div id="responseBox" class="response-box"></div>
+  </div>
+
+  <div class="theme-toggle">
+    Theme: <button onclick="toggleTheme()">Toggle Light/Dark</button>
+  </div>
+
+  <script>
+    const ipInput = document.getElementById("ipInput");
+    const responseBox = document.getElementById("responseBox");
+
+    window.onload = () => {
+      const savedIP = localStorage.getItem("picoIP");
+      if (savedIP) ipInput.value = savedIP;
+
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+
+      updateTime();
+      setInterval(updateTime, 1000);
+    };
+
+    function toggleExclusive(checkedBox, otherId) {
+      const otherBox = document.getElementById(otherId);
+      const timeInput = document.getElementById("timeInput");
+
+      if (checkedBox.id === "timeCheckbox") {
+        timeInput.disabled = !checkedBox.checked;
+      }
+
+      if (checkedBox.id === "sensorCheckbox") {
+        timeInput.disabled = true;
+      }
+
+      if (checkedBox.checked) {
+        otherBox.checked = false;
+      }
+    }
+
+    function sendData() {
+      const ip = ipInput.value.trim();
+      const timeSelected = document.getElementById("timeCheckbox").checked;
+      const sensorSelected = document.getElementById("sensorCheckbox").checked;
+      const timeValue = document.getElementById("timeInput").value;
+
+      if (!ip) {
+        showResponse("Please enter the Pico IP address.", false);
+        return;
+      }
+
+      localStorage.setItem("picoIP", ip);
+
+      let url = "";
+
+      if (timeSelected) {
+        if (!timeValue) {
+          showResponse("Please select a time.", false);
+          return;
+        }
+        const [hh, mm] = timeValue.split(":");
+        const timeStr = `${parseInt(hh)}:${parseInt(mm)}`;
+        url = `http://${ip}/?time=${timeStr}`;
+      } else if (sensorSelected) {
+        url = `http://${ip}/?sensor=1`;
+      } else {
+        showResponse("Please select an option before sending.", false);
+        return;
+      }
+
+      fetch(url)
+        .then(res => res.text())
+        .then(txt => showResponse("Pico responded: " + txt, true))
+        .catch(err => showResponse("Error sending to Pico: " + err, false));
+    }
+
+    function pingPico() {
+      const ip = ipInput.value.trim();
+      if (!ip) {
+        showResponse("Please enter the Pico IP address.", false);
+        return;
+      }
+
+      localStorage.setItem("picoIP", ip);
+
+      fetch(`http://${ip}/ping`)
+        .then(res => res.text())
+        .then(txt => showResponse("Ping success: " + txt, true))
+        .catch(err => showResponse("Ping failed: " + err, false));
+    }
+
+    function showResponse(message, success = true) {
+      responseBox.textContent = message;
+      responseBox.className = `response-box ${success ? "success" : "error"}`;
+      responseBox.style.display = "block";
+    }
+
+    function updateTime() {
+      const now = new Date();
+      const hh = now.getHours();
+      const mm = now.getMinutes();
+      const timeStr = `${hh.toString().padStart(2, "0")}:${mm.toString().padStart(2, "0")}`;
+      document.getElementById("liveTime").textContent = "Current Time: " + timeStr;
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      const next = current === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    }
+  </script>
+
+</body>
+</html>
