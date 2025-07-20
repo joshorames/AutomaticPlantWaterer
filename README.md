@@ -8,7 +8,9 @@
 <img width="675" height="433" alt="image" src="https://github.com/user-attachments/assets/85d52c05-66d0-4d58-9a63-17c20b438555" />
 <img width="371" height="224" alt="image" src="https://github.com/user-attachments/assets/e3f829a9-0ca9-4282-bd1c-12805fdbe07a" />
 
-### 3. Open the html file in browser and you should see something like below.
+### 3. After the Pico W will reboot and save the credentials for later connections. Ensure there are no terminal errors before continuing.
+
+### 4. Open the html file in browser and you should see something like below.
 <img width="1914" height="1000" alt="image" src="https://github.com/user-attachments/assets/14b4e1bd-c7ad-4f10-8515-a662649fa1e3" />
 
 
