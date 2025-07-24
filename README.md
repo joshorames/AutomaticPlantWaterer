@@ -10,7 +10,8 @@
 - Container fitting components
 -  Standoff and screw kit (M2.5 size) https://www.amazon.com/dp/B0BP6LT76V?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1
 -  Tubing
--  Any water pump should work as long as you have a matching external power supply thst doesnt surpass relay limits
+-  Any water pump should work as long as you have a matching external power supply that doesn't surpass relay limits
+-  Soil moisture sensor https://www.amazon.com/MTDELE-Capacitive-Moisture-Compatible-Raspberry/dp/B0DCK735NG/ref=sr_1_2_sspa?crid=3LGZ26EUYWOUF&dib=eyJ2IjoiMSJ9.wSEvohJKVtGd534tNf5vgPEWybo3O_lI3A-ALgwVoCpJn8Ckf9xFXSki1CS1xAt6Fo-ZWG_fJLeIxCnOH00Z8bYjZHK75vmQPV-m4z9R1jJLOCibsZpPEAMvxmUdWMNfaHev4j8XvYNjV2ZM6vzD7Xxg-0fRGQNCmWChfh3HacyaaprLyS_dA9fidGxspi1a7gFNBwA2R8V-0FJx5qTJQhnBywPoey0CUGW0w2sc_HgLvvbTLPAQkjv40TvAFJ-SCtzQLaPzPyhJ6aQSY1syabEoMsYfGmXRVQ2Bhgl4ZdQ.tXDYVg9c7NCCrDOQn7Swdd8lQd3jKYU4G1IZL3oYj_E&dib_tag=se&keywords=soil+moisture+sensor&qid=1753321409&sprefix=soil+moisture+senso%2Caps%2C154&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1
 
 ## Steps to Use After Setup
 ### 1. Start the Pico W. You should see something like this.
