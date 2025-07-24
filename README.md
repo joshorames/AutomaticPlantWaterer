@@ -1,5 +1,5 @@
 # AutomaticPlantWaterer
-<img width="2177" height="1682" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/45bf4697-b55d-46b0-a1ab-572f939bc83e" />
+<img width="500" height="500" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/45bf4697-b55d-46b0-a1ab-572f939bc83e" />
 <img width="500" height="500" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/69644ac3-7d22-4852-acd6-e4b1ed50bb7b" />
 
 
