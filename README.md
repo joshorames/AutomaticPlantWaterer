@@ -1,6 +1,7 @@
 # AutomaticPlantWaterer
-<img width="2177" height="1682" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/69644ac3-7d22-4852-acd6-e4b1ed50bb7b" />
 <img width="2177" height="1682" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/45bf4697-b55d-46b0-a1ab-572f939bc83e" />
+<img width="2177" height="1682" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/69644ac3-7d22-4852-acd6-e4b1ed50bb7b" />
+
 
 ## Parts List
 - Pico 2 W https://www.amazon.com/Pico-Pre-Soldered-Compatible-Microcontroller-Dual-Architecture/dp/B0DP54FWX1/ref=sr_1_4?crid=3A3A8RG0YWWSY&dib=eyJ2IjoiMSJ9.K7RF40OxhfXiJPTcDvxcq1zxlDTnj9D2cpCLatsg2fNyzRGYxyUGrBe0tvj6ignjhz6G8JVH4hRNykmHWWI7rT9zvfFO7NkqPJZJRULVAbXUX9fEbkHieunhfqfiN_MU5KuVdEClqdXzM0C-T7PQtzbtW_ItKwIpacZxFyaYoLFXGzN4XsDuGT_khV3JZ4PEi1agwHoGXvAI_wqC7Fg6Zni385aQyf7ed7c74XSiAeg.NGPcsx9pFry182XTfgVYaG4YGxnNsLhle2QZ_ZkGYCw&dib_tag=se&keywords=pico+2w&qid=1753320369&sprefix=pico+2%2Caps%2C143&sr=8-4
