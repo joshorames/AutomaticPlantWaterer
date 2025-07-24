@@ -11,7 +11,7 @@ AP_SSID = "PicoSetup"
 AP_PASSWORD = "12345678"
 
 soil_sensor = ADC(Pin(26))
-relay = Pin(16, Pin.OUT)
+relay = Pin(16, Pin.OUT, value=1)
 conversion_factor = 100/(65535)
 
 time_trigger = None
@@ -252,16 +252,23 @@ def get_soil_moisture():
             time_trigger = None  # Reset after triggered
 
         # Trigger relay based on sensor flag and moisture level
-        if sensor_trigger and moisture < 70:
-            print("Sensor trigger and low moisture! Activating relay.")
-            relay.value(0)
-            utime.sleep(10)
-            relay.value(1)
-            sensor_trigger = False  # Reset sensor trigger
+        while sensor_trigger:
+            moisture = 130 - (soil_sensor.read_u16() * conversion_factor)
+            print("Moisture: ", round(moisture,1), "% - ", utime.localtime())
+            if moisture < 70:
+                print("Sensor trigger and low moisture! Activating relay.")
+                
+                relay.value(0)
+                utime.sleep(3)
+                relay.value(1)
+                utime.sleep(10)
+            utime.sleep(1)
+            
 
         utime.sleep(1)
 
 def main():
+    relay.value(1)
     ssid, password = load_credentials()
     wlan = None
     if ssid:
@@ -279,3 +286,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
