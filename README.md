@@ -27,6 +27,12 @@
 <img width="1914" height="1000" alt="image" src="https://github.com/user-attachments/assets/14b4e1bd-c7ad-4f10-8515-a662649fa1e3" />
 
 
+## License
 
+This project is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).  
+You may use and modify it for **non-commercial purposes only**, with credit to:
+
+**Author:** Josh Orames  
+**Original repository:** [https://github.com/YOUR_USERNAME/YOUR_REPO](https://github.com/joshorames/AutomaticPlantWaterer)
 
 
