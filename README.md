@@ -1,6 +1,5 @@
 # AutomaticPlantWaterer
-<img width="1988" height="1682" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/9cd8d980-85af-4c95-89e1-25701995343a" />
-
+<img width="2177" height="1682" alt="AutomaticWaterer_bb" src="https://github.com/user-attachments/assets/69644ac3-7d22-4852-acd6-e4b1ed50bb7b" />
 
 ## Steps to Use After Setup
 ### 1. Start the Pico W. You should see something like this.
