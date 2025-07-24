@@ -33,6 +33,6 @@ This project is licensed under [CC BY-NC 4.0](https://creativecommons.org/licens
 You may use and modify it for **non-commercial purposes only**, with credit to:
 
 **Author:** Josh Orames  
-**Original repository:** [https://github.com/YOUR_USERNAME/YOUR_REPO](https://github.com/joshorames/AutomaticPlantWaterer)
+**Original repository:** (https://github.com/joshorames/AutomaticPlantWaterer)
 
 
