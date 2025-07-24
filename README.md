@@ -7,6 +7,8 @@
 - Relay https://www.amazon.com/dp/B00E0NTPP4?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1
 - Container fitting components
 -  Standoff and screw kit (M2.5 size) https://www.amazon.com/dp/B0BP6LT76V?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1
+-  Tubing
+-  Any water pump should work as long as you have a matching external power supply thst doesnt surpass relay limits
 
 ## Steps to Use After Setup
 ### 1. Start the Pico W. You should see something like this.
